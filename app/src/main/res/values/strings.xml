@@ -2,4 +2,22 @@
     <string name="app_name">AndroidMessenger</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_person">Профиль пользователя</string>
+    <string name="profile_name">Имя пользователя</string>
+    <string name="profile_mail">Электронная почта</string>
+    <string name="profile_id">Идентификатор</string>
+    <string name="profile_login">Login</string>
+    <string name="second_name_profile">Фамилия пользователя</string>
+    <string name="role_profile">Род занятий</string>
+    <string name="num_phone_profile">Номер телефона</string>
+    <string name="age_profile">Возраст</string>
+    <string name="adress_profile">Адрес</string>
+    <string name="method_entry_profile">Способ входа</string>
+    <string name="call">Позвонить</string>
+    <string name="send_sms">Отправить SMS</string>
+    <string name="save">Сохранить</string>
+    <string name="password_log">Пароль</string>
+    <string name="lost_password">Забыл(а) пароль</string>
+    <string name="input">Войти</string>
+    <string name="register">Зарегистрироваться</string>
 </resources>

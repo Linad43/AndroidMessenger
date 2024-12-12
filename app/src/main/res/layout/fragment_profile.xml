@@ -1,14 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        style="@style/style_text_view_title"
+        android:text="@string/profile_person" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/profileLogin"
+        style="@style/style_text_view_title"
+        android:text="@string/profile_login" />
+
+    <TextView
+        android:id="@+id/profileMail"
+        style="@style/style_text_view_default"
+        android:text="@string/profile_mail" />
+
+    <TextView
+        android:id="@+id/profileId"
+        style="@style/style_text_view_default"
+        android:text="@string/profile_id" />
+
+    <TextView
+        style="@style/style_text_view_default"
+        android:layout_gravity="start"
+        android:paddingStart="30dp"
+        android:text="@string/profile_name" />
+
+    <TextView
+        style="@style/style_text_view_default"
+        android:layout_gravity="start"
+        android:paddingStart="30dp"
+        android:text="@string/second_name_profile" />
+
+    <TextView
+        style="@style/style_text_view_default"
+        android:layout_gravity="start"
+        android:paddingStart="30dp"
+        android:text="@string/role_profile" />
+
+    <TextView
+        style="@style/style_text_view_default"
+        android:layout_gravity="start"
+        android:paddingStart="30dp"
+        android:text="@string/num_phone_profile" />
+
+    <TextView
+        style="@style/style_text_view_default"
+        android:layout_gravity="start"
+        android:paddingStart="30dp"
+        android:text="@string/age_profile" />
+
+    <TextView
+        style="@style/style_text_view_default"
+        android:layout_gravity="start"
+        android:paddingStart="30dp"
+        android:text="@string/adress_profile" />
+
+    <TextView
+        style="@style/style_text_view_default"
+        android:layout_gravity="start"
+        android:paddingStart="30dp"
+        android:text="@string/method_entry_profile" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/callBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/white_phone_24"
+            android:text="@string/call"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/space"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/smsBTN"
+            app:layout_constraintStart_toEndOf="@id/callBTN"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/smsBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/white_message_24"
+            android:text="@string/send_sms"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/space"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
