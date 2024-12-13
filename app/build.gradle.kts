@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -33,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -47,4 +51,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.firebase.auth)
+
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
+    implementation("com.airbnb.android:lottie:3.4.0")
+    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+
+//    implementation("com.google.firebase:firebase-auth")
+//    implementation("com.google.firebase:firebase-database")
+
 }

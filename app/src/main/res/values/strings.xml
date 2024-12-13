@@ -21,4 +21,6 @@
     <string name="register">Зарегистрироваться</string>
     <string name="enter_messege">Введите сообщение</string>
     <string name="search">Поиск</string>
+    <string name="hello_text">Приветствуем</string>
+    <string name="password_accept_log">Подтверждение пароля</string>
 </resources>
