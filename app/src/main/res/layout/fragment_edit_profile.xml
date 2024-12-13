@@ -31,7 +31,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@drawable/person_50" />
 
     </androidx.cardview.widget.CardView>
 
@@ -42,8 +42,8 @@
         android:layout_marginEnd="-20dp"
         android:layout_marginBottom="-20dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/edit_1024"
-        android:background=""
+        android:src="@drawable/baseline_edit_24"
+        android:background="@color/none"
         app:layout_constraintBottom_toBottomOf="@+id/cardImage"
         app:layout_constraintEnd_toEndOf="@+id/cardImage" />
 
@@ -141,7 +141,7 @@
                 android:id="@+id/editNumPhone"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@color/default_btn"
+                android:background="@color/violet"
                 android:src="@drawable/white_phone_24"/>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
