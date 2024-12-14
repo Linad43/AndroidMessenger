@@ -36,7 +36,7 @@
         <LinearLayout style="@style/style_linear_layout_for_ET">
 
             <EditText
-                android:id="@+id/emailLogInET"
+                android:id="@+id/emailSignUpET"
                 style="@style/style_edit_text_logIn"
                 android:drawableLeft="@drawable/gray_mail_24"
                 android:hint="@string/profile_mail"
@@ -46,7 +46,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout style="@style/style_linear_layout_for_ET">
 
             <EditText
-                android:id="@+id/passwordLogInET"
+                android:id="@+id/passwordSignUpET"
                 style="@style/style_edit_text_logIn"
                 android:drawableLeft="@drawable/gray_lock_24"
                 android:hint="@string/password_log"
@@ -70,7 +70,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout style="@style/style_linear_layout_for_ET">
 
             <EditText
-                android:id="@+id/passwordAcceptLogInET"
+                android:id="@+id/passwordConfirmSignUpET"
                 style="@style/style_edit_text_logIn"
                 android:drawableLeft="@drawable/gray_lock_24"
                 android:hint="@string/password_accept_log"
@@ -83,7 +83,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/logInBTN"
+            android:id="@+id/signInBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/white_login_24"
@@ -94,7 +94,7 @@
             android:textSize="23sp" />
 
         <TextView
-            android:id="@+id/registerTV"
+            android:id="@+id/redirectLogInTV"
             style="@style/style_text_view_title"
             android:text="@string/input" />
     </LinearLayout>
