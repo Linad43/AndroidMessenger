@@ -43,6 +43,9 @@ class LogInFragment : Fragment() {
             }
             binding.passwordLogInET.setSelection(binding.passwordLogInET.length());
         }
+        binding.lostPasswordTV.setOnClickListener{
+            view.findNavController().navigate(R.id.action_logInFragment_to_passwordRecFragment)
+        }
     }
 
     private fun logIn() {

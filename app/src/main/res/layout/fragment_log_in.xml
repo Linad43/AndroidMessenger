@@ -70,6 +70,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/lostPasswordTV"
             style="@style/style_text_view_default"
             android:layout_gravity="end"
             android:padding="15dp"

@@ -23,4 +23,6 @@
     <string name="search">Поиск</string>
     <string name="hello_text">Приветствуем</string>
     <string name="password_accept_log">Подтверждение пароля</string>
+    <string name="text_lost_password">Введите адрес электронной почты, чтобы получить инструкции по восстановлению пароля</string>
+    <string name="send">Отправить</string>
 </resources>
