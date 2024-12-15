@@ -1,13 +1,14 @@
-package com.example.androidmessenger
+package com.example.androidmessenger.fragments
 
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.postDelayed
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.androidmessenger.R
+import com.example.androidmessenger.database.MyPreference
 
 
 class HelloFragment : Fragment() {
@@ -22,8 +23,12 @@ class HelloFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var sharedPref = MyPreference(requireContext())
         Handler().postDelayed({
-            findNavController().navigate(R.id.action_helloFragment_to_logInFragment2)
-        }, 3710)
+            if (sharedPref.getLogin() != null && sharedPref.getPassword() != null){
+                findNavController().navigate(R.id.action_helloFragment_to_menuFragment)
+            }else{
+                findNavController().navigate(R.id.action_helloFragment_to_logInFragment)}
+        }, 20/*3710*/)
     }
 }

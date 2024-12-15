@@ -7,18 +7,23 @@
 
     <fragment
         android:id="@+id/helloFragment"
-        android:name="com.example.androidmessenger.HelloFragment"
+        android:name="com.example.androidmessenger.fragments.HelloFragment"
         android:label="fragment_hello"
         tools:layout="@layout/fragment_hello">
         <action
-            android:id="@+id/action_helloFragment_to_logInFragment2"
+            android:id="@+id/action_helloFragment_to_logInFragment"
             app:destination="@id/logInFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"  />
+        <action
+            android:id="@+id/action_helloFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.androidmessenger.LogInFragment"
+        android:name="com.example.androidmessenger.fragments.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in">
         <action
@@ -37,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.androidmessenger.RegisterFragment"
+        android:name="com.example.androidmessenger.fragments.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
@@ -48,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/passwordRecFragment"
-        android:name="com.example.androidmessenger.PasswordRecFragment"
+        android:name="com.example.androidmessenger.fragments.PasswordRecFragment"
         android:label="fragment_password_rec"
         tools:layout="@layout/fragment_password_rec">
         <action

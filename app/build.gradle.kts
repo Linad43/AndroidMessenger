@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.ir.backend.js.lower.collectNativeImplementations
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -57,6 +59,11 @@ dependencies {
     implementation("com.airbnb.android:lottie:3.4.0")
     implementation("com.google.firebase:firebase-database-ktx:21.0.0")
 
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+    implementation("androidx.core:core-ktx:1.15.0")
 //    implementation("com.google.firebase:firebase-auth")
 //    implementation("com.google.firebase:firebase-database")
 
