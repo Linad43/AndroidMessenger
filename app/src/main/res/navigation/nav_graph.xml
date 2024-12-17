@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.androidmessenger.MainScreenFragment"
+        android:name="com.example.androidmessenger.fragments.MainScreenFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_main_screen">
         <action
@@ -77,12 +77,12 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.androidmessenger.ProfileFragment"
+        android:name="com.example.androidmessenger.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.androidmessenger.ChatFragment"
+        android:name="com.example.androidmessenger.fragments.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat">
         <action
@@ -91,17 +91,17 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.androidmessenger.EditProfileFragment"
+        android:name="com.example.androidmessenger.fragments.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/viewPagerChatsFragment"
-        android:name="com.example.androidmessenger.ViewPagerChatsFragment"
+        android:name="com.example.androidmessenger.fragments.ViewPagerChatsFragment"
         android:label="fragment_view_pager_chats"
         tools:layout="@layout/fragment_view_pager_chats" />
     <fragment
         android:id="@+id/viewPagerContactsFragment"
-        android:name="com.example.androidmessenger.ViewPagerContactsFragment"
+        android:name="com.example.androidmessenger.fragments.ViewPagerContactsFragment"
         android:label="fragment_view_pager_contacts"
         tools:layout="@layout/fragment_view_pager_contacts" />
 </navigation>

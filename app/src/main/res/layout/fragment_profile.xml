@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".ProfileFragment">
+    tools:context=".fragments.ProfileFragment">
 
     <TextView
         style="@style/style_text_view_title"

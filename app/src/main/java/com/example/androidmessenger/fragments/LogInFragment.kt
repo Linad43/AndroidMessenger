@@ -1,20 +1,16 @@
 package com.example.androidmessenger.fragments
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.Preference
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.androidmessenger.R
-import com.example.androidmessenger.database.MyPreference
+import com.example.androidmessenger.saveLog.MyPreference
 import com.example.androidmessenger.databinding.FragmentLogInBinding
 import com.google.firebase.auth.FirebaseAuth
 

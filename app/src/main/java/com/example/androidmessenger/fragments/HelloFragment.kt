@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidmessenger.R
-import com.example.androidmessenger.database.MyPreference
+import com.example.androidmessenger.saveLog.MyPreference
 
 
 class HelloFragment : Fragment() {
@@ -29,6 +29,6 @@ class HelloFragment : Fragment() {
                 findNavController().navigate(R.id.action_helloFragment_to_menuFragment)
             }else{
                 findNavController().navigate(R.id.action_helloFragment_to_logInFragment)}
-        }, 20/*3710*/)
+        }, 3710)
     }
 }

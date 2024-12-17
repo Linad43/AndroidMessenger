@@ -1,4 +1,4 @@
-package com.example.androidmessenger.database
+package com.example.androidmessenger.saveLog
 
 import android.content.Context
 import android.content.SharedPreferences
