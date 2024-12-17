@@ -24,11 +24,15 @@ class HelloFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var sharedPref = MyPreference(requireContext())
-        Handler().postDelayed({
-            if (sharedPref.getLogin() != null && sharedPref.getPassword() != null){
-                findNavController().navigate(R.id.action_helloFragment_to_menuFragment)
-            }else{
-                findNavController().navigate(R.id.action_helloFragment_to_logInFragment)}
-        }, 3710)
+//        Handler().postDelayed({
+//            if (sharedPref.getLogin() != null && sharedPref.getPassword() != null){
+//                findNavController().navigate(R.id.action_helloFragment_to_menuFragment)
+//            }else{
+//                findNavController().navigate(R.id.action_helloFragment_to_logInFragment)}
+//        }, 3710)
+        if (sharedPref.getLogin() != null && sharedPref.getPassword() != null){
+            findNavController().navigate(R.id.action_helloFragment_to_menuFragment)
+        }else{
+            findNavController().navigate(R.id.action_helloFragment_to_logInFragment)}
     }
 }

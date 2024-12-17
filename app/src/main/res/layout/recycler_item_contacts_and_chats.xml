@@ -20,6 +20,7 @@
             app:cardCornerRadius="100dp">
 
             <ImageView
+                android:id="@+id/imageIV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -27,6 +28,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/loginTV"
             style="@style/style_text_view_title"
             android:text="@string/profile_login" />
     </LinearLayout>

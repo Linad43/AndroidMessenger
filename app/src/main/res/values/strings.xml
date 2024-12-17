@@ -25,4 +25,6 @@
     <string name="password_accept_log">Подтверждение пароля</string>
     <string name="text_lost_password">Введите адрес электронной почты, чтобы получить инструкции по восстановлению пароля</string>
     <string name="send">Отправить</string>
+    <string name="exit">Выход</string>
+    <string name="edit_profile">Редактировать профиль</string>
 </resources>

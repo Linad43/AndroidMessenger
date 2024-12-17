@@ -20,9 +20,8 @@ class LogInFragment : Fragment() {
     private var _binding: FragmentLogInBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
-
-//    private lateinit var sharedPref: SharedPreferences
     private lateinit var sharedPref: MyPreference
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -97,16 +96,4 @@ class LogInFragment : Fragment() {
         _binding = null
     }
 
-//    private fun getID(): Int {
-//        var id = BEGIN_ID
-//        while (true) {
-//            if (listMail.isNotEmpty() && listMail.groupBy { it.id }
-//                    .keys.indexOf(id) != IS_NOT_FIND) {
-//                id++
-//            } else {
-//                break
-//            }
-//        }
-//        return id
-//    }
 }

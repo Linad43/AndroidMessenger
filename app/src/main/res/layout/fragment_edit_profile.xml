@@ -41,79 +41,95 @@
         android:layout_height="50dp"
         android:layout_marginEnd="-20dp"
         android:layout_marginBottom="-20dp"
+        android:background="@color/none"
         android:scaleType="centerCrop"
         android:src="@drawable/baseline_edit_24"
-        android:background="@color/none"
         app:layout_constraintBottom_toBottomOf="@+id/cardImage"
         app:layout_constraintEnd_toEndOf="@+id/cardImage" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton">
 
-        <TextView
-            style="@style/style_text_view_title"
-            android:text="@string/profile_login" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            style="@style/style_text_view_default"
-            android:text="@string/profile_mail" />
+            <TextView
+                android:id="@+id/loginTV"
+                style="@style/style_text_view_title"
+                android:text="@string/profile_login" />
 
-        <TextView
-            style="@style/style_text_view_default"
-            android:text="@string/method_entry_profile" />
+            <TextView
+                style="@style/style_text_view_default"
+                android:text="@string/profile_mail" />
 
-        <LinearLayout style="@style/style_linear_layout_for_ET">
+            <TextView
+                style="@style/style_text_view_default"
+                android:text="@string/method_entry_profile" />
 
-            <EditText
-                style="@style/style_edit_text"
-                android:hint="@string/profile_name" />
+            <LinearLayout style="@style/style_linear_layout_for_ET">
+
+                <EditText
+                    android:id="@+id/firstNameET"
+                    style="@style/style_edit_text"
+                    android:hint="@string/profile_name" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_linear_layout_for_ET">
+
+                <EditText
+                    android:id="@+id/secondNameET"
+                    style="@style/style_edit_text"
+                    android:hint="@string/second_name_profile" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_linear_layout_for_ET">
+
+                <EditText
+                    android:id="@+id/roleET"
+                    style="@style/style_edit_text"
+                    android:hint="@string/role_profile" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_linear_layout_for_ET">
+
+                <EditText
+                    android:id="@+id/adressET"
+                    style="@style/style_edit_text"
+                    android:hint="@string/adress_profile" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_linear_layout_for_ET">
+
+                <EditText
+                    android:id="@+id/ageET"
+                    style="@style/style_edit_text"
+                    android:inputType="number"
+                    android:hint="@string/age_profile" />
+            </LinearLayout>
+
         </LinearLayout>
-
-        <LinearLayout style="@style/style_linear_layout_for_ET">
-
-            <EditText
-                style="@style/style_edit_text"
-                android:hint="@string/second_name_profile" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/style_linear_layout_for_ET">
-
-            <EditText
-                style="@style/style_edit_text"
-                android:hint="@string/role_profile" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/style_linear_layout_for_ET">
-
-            <EditText
-                style="@style/style_edit_text"
-                android:hint="@string/adress_profile" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/style_linear_layout_for_ET">
-
-            <EditText
-                style="@style/style_edit_text"
-                android:hint="@string/age_profile" />
-        </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@id/scrollView">
 
         <Button
             android:id="@+id/saveBTN"
@@ -135,14 +151,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/saveBTN"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 android:id="@+id/editNumPhone"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/violet"
-                android:src="@drawable/white_phone_24"/>
+                android:src="@drawable/white_phone_24" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
