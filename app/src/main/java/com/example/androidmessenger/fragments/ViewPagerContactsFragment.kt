@@ -5,9 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidmessenger.R
 import com.example.androidmessenger.databinding.FragmentViewPagerContactsBinding
+import com.example.androidmessenger.service.PersonsAdapter
 
 class ViewPagerContactsFragment : Fragment() {
+
+    private lateinit var adapter: PersonsAdapter
+    private var listLog = arrayListOf<String>()
     private var _binding: FragmentViewPagerContactsBinding? = null
     private val binding get() = _binding!!
 
@@ -17,6 +24,20 @@ class ViewPagerContactsFragment : Fragment() {
     ): View? {
         _binding = FragmentViewPagerContactsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter = PersonsAdapter(listLog)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+
+        adapter.setOnPersonClickListener(object :
+            PersonsAdapter.OnPersonsClickListener {
+            override fun onPersonClick(persons: String, position: Int) {
+                findNavController().navigate(R.id.action_menuFragment_to_chatFragment)
+            }
+        })
     }
     override fun onDestroyView() {
         super.onDestroyView()

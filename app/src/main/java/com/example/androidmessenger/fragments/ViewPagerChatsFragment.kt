@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidmessenger.R
 import com.example.androidmessenger.databinding.FragmentViewPagerChatsBinding
 import com.example.androidmessenger.service.PersonsAdapter
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class ViewPagerChatsFragment : Fragment() {
 
@@ -28,6 +31,7 @@ class ViewPagerChatsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val user = FirebaseAuth.getInstance()
 
         adapter = PersonsAdapter(listLog)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

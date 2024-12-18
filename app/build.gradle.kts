@@ -65,6 +65,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata:2.8.7")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
     implementation("androidx.core:core-ktx:1.15.0")
+
+//    implementation ("com.google.firebase:firebase-admin:9.4.2")
+
 //    implementation("com.google.firebase:firebase-auth")
 //    implementation("com.google.firebase:firebase-database")
 
