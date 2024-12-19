@@ -2,18 +2,21 @@ package com.example.androidmessenger.saveLog
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import java.io.Serializable
 
 class Person(
-    val login: String = Firebase.auth.uid!!,
+    val uid: String = Firebase.auth.uid!!,
+    val login: String = "",
     val firstName: String = "",
     val secondName: String = "",
     val role: String = "",
     val address: String = "",
     val age: String = "",
     val numPhone: String = "",
-) {
-//    companion object {
-//        fun randLogin(): String {
+): Serializable {
+    companion object {
+        const val nameForBundle = "Person"
+        //        fun randLogin(): String {
 //            var result = ""
 //            for (i in 1..8) {
 //                result = "$result${LETTER.random()}"
@@ -21,5 +24,5 @@ class Person(
 //            return result
 //        }
 //        const val LETTER = "qwertyuiopasdfghjklzxcvbnm0123456789"
-//    }
+    }
 }

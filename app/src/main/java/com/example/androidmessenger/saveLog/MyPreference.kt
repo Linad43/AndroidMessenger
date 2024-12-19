@@ -18,7 +18,11 @@ class MyPreference(
     fun getLogin(): String? {
         return myPref.getString("login", null);
     }
-
+    fun delLogin() {
+        prefEditor = myPref.edit();
+        prefEditor.remove("login")
+        prefEditor.commit();
+    }
     fun setPassword(userPass: String) {
         prefEditor = myPref.edit();
         prefEditor.putString("user", userPass);
@@ -27,5 +31,10 @@ class MyPreference(
 
     fun getPassword(): String? {
         return myPref.getString("user", null);
+    }
+    fun delPassword() {
+        prefEditor = myPref.edit();
+        prefEditor.remove("user")
+        prefEditor.commit();
     }
 }

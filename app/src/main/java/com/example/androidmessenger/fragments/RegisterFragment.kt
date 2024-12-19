@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.example.androidmessenger.R
 import com.example.androidmessenger.databinding.FragmentRegisterBinding
 import com.example.androidmessenger.saveLog.Person
+import com.example.androidmessenger.saveLog.RWDatadase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -102,8 +103,10 @@ class RegisterFragment : Fragment() {
                     "Успешно зарегистрирован",
                     Toast.LENGTH_SHORT
                 ).show()
-                val person = Person()
-                sendPersonToFirebase(person)
+                val person = Person(
+                    login = email
+                )
+                RWDatadase.sendPersonToFirebase(person)
                 requireView()
                     .findNavController()
                     .navigate(
@@ -125,15 +128,7 @@ class RegisterFragment : Fragment() {
             }
         }
     }
-    private fun sendPersonToFirebase(person: Person) {
-        val id = FirebaseAuth.getInstance().currentUser!!.uid
-        val database = Firebase.database.reference
-            .child("users")
-            .child(id)
-        val map: HashMap<String, Person> = HashMap()
-        map["Person"] = person
-        database.updateChildren(map as Map<String, Any>)
-    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

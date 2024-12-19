@@ -52,11 +52,6 @@ class PasswordRecFragment : Fragment() {
             ).show()
             return
         }
-//        Toast.makeText(
-//            requireContext(),
-//            "Отправлено сообщение на введеный Email...",
-//            Toast.LENGTH_SHORT
-//        ).show()
         auth.sendPasswordResetEmail(email)
             .addOnSuccessListener {
                 Toast.makeText(

@@ -16,6 +16,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.database
 import com.example.androidmessenger.R
+import com.example.androidmessenger.saveLog.RWDatadase
 import kotlinx.coroutines.joinAll
 
 class EditProfileFragment : Fragment() {
@@ -38,10 +39,8 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var sharedPref = MyPreference(requireContext())
-        person = readPersonFromFirebase()
-        if (person != null) {
-            setPersonToFragment(person!!)
-        }
+        readPersonFromFirebase()
+//        setPersonToFragment(person!!)
 
         binding.loginTV.text = sharedPref.getLogin()
 
@@ -55,7 +54,7 @@ class EditProfileFragment : Fragment() {
 
         binding.saveBTN.setOnClickListener {
             val person = createPersonFromFragment(sharedPref)
-            sendPersonToFirebase(person)
+            RWDatadase.sendPersonToFirebase(person)
         }
 
         binding.editNumPhone.setOnClickListener {
@@ -78,10 +77,10 @@ class EditProfileFragment : Fragment() {
                         address = person!!.address,
                         numPhone = editNumPhone.text.toString()
                     )
-                    sendPersonToFirebase(person!!)
+                    RWDatadase.sendPersonToFirebase(person!!)
                 }
             }
-            dialog.setNegativeButton("Отмена"){_,_,->
+            dialog.setNegativeButton("Отмена") { _, _ ->
             }
             dialog.create().show()
         }
@@ -110,7 +109,6 @@ class EditProfileFragment : Fragment() {
                     4 -> address = it.text.toString()
                     5 -> age = it.text.toString()
                 }
-
             }
             i++
         }
@@ -124,29 +122,23 @@ class EditProfileFragment : Fragment() {
         )
         return person
     }
+//
+//    private fun sendPersonToFirebase(person: Person) {
+//        val database = Firebase.database.reference
+//            .child("users")
+//        val map: HashMap<String, Person> = HashMap()
+//        map[person.login] = person
+//        database.updateChildren(map as Map<String, Any>)
+//    }
 
-    private fun sendPersonToFirebase(person: Person) {
-        val id = FirebaseAuth.getInstance().currentUser!!.uid
-        val database = Firebase.database.reference
-            .child("users")
-            .child(id)
-        val map: HashMap<String, Person> = HashMap()
-        map["Person"] = person
-        database.updateChildren(map as Map<String, Any>)
-    }
-
-    private fun readPersonFromFirebase(): Person? {
-        val id = FirebaseAuth.getInstance().currentUser!!.uid
-        var person: Person? = null
+    private fun readPersonFromFirebase() {
         Firebase.database.reference.child("users")
-            .child(id).get().addOnSuccessListener {
+            .get().addOnSuccessListener {
                 if (it.child("Person").getValue(Person::class.java) != null) {
                     person = it.child("Person").getValue(Person::class.java)!!
-                    setPersonToFragment(person)
-                    this.person = person
+                    setPersonToFragment(person!!)
                 }
             }
-        return person
     }
 
     private fun setPersonToFragment(person: Person) {
@@ -168,16 +160,6 @@ class EditProfileFragment : Fragment() {
         startActivityForResult(imagePickerIntent, GALLERY_REQUEST)
     }
 
-//    private fun readPersonFromFragment() {
-//        val person = Person(
-//            login = binding.loginTV.text.toString(),
-//            firstName = binding.,
-//            secondName = secondName ?: "",
-//            role = role ?: "",
-//            address = address ?: "",
-//            age = age ?: "",
-//        )
-//    }
 }
 
 

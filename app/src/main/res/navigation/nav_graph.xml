@@ -79,7 +79,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.androidmessenger.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="Person"
+            app:argType="com.example.androidmessenger.saveLog.Person" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.androidmessenger.fragments.ChatFragment"
@@ -88,6 +92,9 @@
         <action
             android:id="@+id/action_chatFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="Person"
+            app:argType="com.example.androidmessenger.saveLog.Person" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"

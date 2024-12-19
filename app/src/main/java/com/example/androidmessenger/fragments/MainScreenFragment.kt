@@ -11,6 +11,7 @@ import com.example.androidmessenger.databinding.FragmentMainScreenBinding
 import com.example.androidmessenger.saveLog.MyPreference
 import com.example.androidmessenger.service.MainScreenPager
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -46,6 +47,12 @@ class MainScreenFragment : Fragment() {
             when (it.itemId) {
                 R.id.exit -> requireActivity().finishAffinity()
                 R.id.editProfile -> findNavController().navigate(R.id.action_menuFragment_to_editProfileFragment)
+                R.id.exitFromAcc -> {
+                    sharedPref.delLogin()
+                    sharedPref.delPassword()
+                    FirebaseAuth.getInstance().signOut()
+                    findNavController().navigate(R.id.action_menuFragment_to_logInFragment)
+                }
             }
             true
         }

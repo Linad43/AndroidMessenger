@@ -7,9 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidmessenger.R
+import com.example.androidmessenger.saveLog.Person
 
 class PersonsAdapter(
-    private val persons: ArrayList<String>,
+    private val persons: ArrayList<Person>,
 ) : RecyclerView.Adapter<PersonsAdapter.PersonsViewHolder>() {
     private var onPersonsClickListener: OnPersonsClickListener? = null
     override fun onCreateViewHolder(
@@ -27,7 +28,7 @@ class PersonsAdapter(
     ) {
         val person = persons[position]
         holder.imageIV.setImageResource(R.drawable.person_50)
-        holder.loginTV.text = person
+        holder.loginTV.text = person.login
         holder.itemView.setOnClickListener {
             if (onPersonsClickListener != null) {
                 onPersonsClickListener!!.onPersonClick(person, position)
@@ -38,7 +39,7 @@ class PersonsAdapter(
     override fun getItemCount(): Int = persons.size
 
     interface OnPersonsClickListener {
-        fun onPersonClick(persons: String, position: Int)
+        fun onPersonClick(persons: Person, position: Int)
     }
 
     class PersonsViewHolder(

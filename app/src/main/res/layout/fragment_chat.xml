@@ -29,12 +29,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/imagePersonIV"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_launcher_foreground" />
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/titleLoginTV"
                 style="@style/style_text_view_default"
                 android:text="@string/profile_login"
                 android:textColor="@color/white" />

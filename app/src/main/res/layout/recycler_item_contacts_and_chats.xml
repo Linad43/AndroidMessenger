@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/loginTV"
-            style="@style/style_text_view_title"
+            style="@style/style_text_view_default"
             android:text="@string/profile_login" />
     </LinearLayout>
 
