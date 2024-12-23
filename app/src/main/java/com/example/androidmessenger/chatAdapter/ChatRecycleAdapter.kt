@@ -42,9 +42,11 @@ class ChatRecycleAdapter(
     ) {
         val message = messages[position]
         if (message::class == GetMessage::class){
+            holder.cardSendMessage.visibility = View.INVISIBLE
             holder.cardGetMessage.visibility = View.VISIBLE
             holder.getMessage.text = message.textChat
         }else{
+            holder.cardGetMessage.visibility = View.INVISIBLE
             holder.cardSendMessage.visibility = View.VISIBLE
             holder.sendMessage.text = message.textChat
         }
