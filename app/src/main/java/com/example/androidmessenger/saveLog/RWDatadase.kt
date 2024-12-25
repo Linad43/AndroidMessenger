@@ -1,5 +1,6 @@
 package com.example.androidmessenger.saveLog
 
+import android.Manifest
 import android.annotation.SuppressLint
 import com.example.androidmessenger.chatAdapter.ChatMessage
 import com.example.androidmessenger.chatAdapter.ChatRecycleAdapter
@@ -21,6 +22,7 @@ class RWDatadase {
                         }
                         listLog.add(user)
                     }
+                    listLog.sortedBy { it.login }
                     adapter.notifyDataSetChanged()
                 }
         }

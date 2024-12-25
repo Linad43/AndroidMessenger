@@ -1,5 +1,6 @@
 package com.example.androidmessenger.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,7 @@ class ViewPagerContactsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -56,12 +58,33 @@ class ViewPagerContactsFragment : Fragment() {
                 }
             }
         })
+        binding.searchBTN.setOnClickListener {
+            val textSearch = binding.searchET.text
+            val newList = arrayListOf<PersonJ>()
+            listLog.forEach {
+                newList.add(it)
+            }
+            listLog.clear()
+            if (textSearch != null && textSearch.toString() != "") {
+                listLog.forEach {
+                    newList.add(it)
+                }
+                listLog.clear()
+                listLog.addAll(newList.filter {
+                    it.login.contains(textSearch)
+                })
+                adapter.notifyDataSetChanged()
+            } else {
+                RWDatadase.readUsers(listLog, adapter)
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
     private fun readPersonFromFirebase() {
         val id = FirebaseAuth.getInstance().uid!!
         Firebase.database.reference

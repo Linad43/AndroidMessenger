@@ -34,6 +34,7 @@ class ViewPagerChatsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listLog.clear()
@@ -55,6 +56,26 @@ class ViewPagerChatsFragment : Fragment() {
                 }
             }
         })
+        binding.searchBTN.setOnClickListener {
+            val textSearch = binding.searchET.text
+            val newList = arrayListOf<PersonJ>()
+            listLog.forEach {
+                newList.add(it)
+            }
+            listLog.clear()
+            if (textSearch != null && textSearch.toString() != "") {
+                listLog.forEach {
+                    newList.add(it)
+                }
+                listLog.clear()
+                listLog.addAll(newList.filter {
+                    it.login.contains(textSearch)
+                })
+                adapter.notifyDataSetChanged()
+            } else {
+                RWDatadase.readUsers(listLog, adapter)
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -82,6 +103,7 @@ class ViewPagerChatsFragment : Fragment() {
                         listLog.add(person)
                     }
                 }
+                listLog.sortedBy { it.login }
                 adapter.notifyDataSetChanged()
             }
         Firebase.database.reference
