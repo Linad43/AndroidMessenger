@@ -6,19 +6,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.androidmessenger.databinding.FragmentEditProfileBinding
 import com.example.androidmessenger.saveLog.MyPreference
-import com.example.androidmessenger.saveLog.Person
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.database
 import com.example.androidmessenger.R
 import com.example.androidmessenger.saveLog.PersonJ
 import com.example.androidmessenger.saveLog.RWDatadase
-import kotlin.concurrent.thread
 
 class EditProfileFragment : Fragment() {
 
@@ -35,7 +36,7 @@ class EditProfileFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("InflateParams")
+    @SuppressLint("InflateParams", "MissingInflatedId")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -68,16 +69,47 @@ class EditProfileFragment : Fragment() {
         binding.editNumPhone.setOnClickListener {
             val dialog = AlertDialog.Builder(requireContext())
             val inflater = this.layoutInflater
-            val dialogView = inflater.inflate(R.layout.dialog_add_num_phone, null)
+            val dialogView = inflater.inflate(R.layout.dialog_add_text, null)
             dialog.setView(dialogView)
-            val editNumPhone = dialogView.findViewById<EditText>(R.id.inputNumPhoneET)
+            val editNumPhone = dialogView.findViewById<EditText>(R.id.inputET)
+            val message = dialogView.findViewById<TextView>(R.id.message)
+            message.text = "Введите новый номер телефона"
 
             dialog.setTitle("Обновить номер телефона")
             dialog.setPositiveButton("Обновить") { _, _ ->
-//                var person = readPersonFromFirebase()
                 if (person != null) {
                     person!!.numPhone = editNumPhone.text.toString()
                     RWDatadase.sendPersonToFirebase(person!!)
+                }
+            }
+            dialog.setNegativeButton("Отмена") { _, _ ->
+            }
+            dialog.create().show()
+        }
+        binding.loginTV.setOnClickListener{
+            val dialog = AlertDialog.Builder(requireContext())
+            val inflater = this.layoutInflater
+            val dialogView = inflater.inflate(R.layout.dialog_add_text, null)
+            dialog.setView(dialogView)
+            val editLogin = dialogView.findViewById<EditText>(R.id.inputET)
+            editLogin.inputType = EditorInfo.TYPE_TEXT_VARIATION_NORMAL
+            val message = dialogView.findViewById<TextView>(R.id.message)
+            message.text = "Введите новый логин ниже"
+
+            dialog.setTitle("Обновить логин")
+            dialog.setPositiveButton("Обновить") { _, _ ->
+                if (editLogin.text.length>=3){
+                    if (person != null) {
+                        person!!.login = editLogin.text.toString()
+                        RWDatadase.sendPersonToFirebase(person!!)
+                        binding.loginTV.text = person!!.login
+                    }
+                }else{
+                    Toast.makeText(
+                        requireContext(),
+                        "Некорректный ввод, изменения не сохранены",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
             dialog.setNegativeButton("Отмена") { _, _ ->
@@ -141,6 +173,7 @@ class EditProfileFragment : Fragment() {
         binding.roleET.setText(person.role)
         binding.adressET.setText(person.address)
         binding.ageET.setText(person.age.toString())
+        binding.loginTV.text = person.login.toString()
     }
 
     override fun onDestroyView() {

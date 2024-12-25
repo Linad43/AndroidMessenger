@@ -16,10 +16,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.androidmessenger.R
 import com.example.androidmessenger.databinding.FragmentMainScreenBinding
 import com.example.androidmessenger.saveLog.MyPreference
+import com.example.androidmessenger.saveLog.PersonJ
 import com.example.androidmessenger.service.MainScreenPager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.database
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MainScreenFragment : Fragment() {
@@ -51,7 +55,15 @@ class MainScreenFragment : Fragment() {
         binding.viewPager.adapter = adapter
         binding.toolbar.setTitle(sharedPref.getLogin())
         binding.toolbar.inflateMenu(R.menu.main_menu)
-
+        Firebase.database.reference
+            .child("users")
+            .child(FirebaseAuth.getInstance().uid!!)
+            .get().addOnSuccessListener {
+                if (it.getValue(PersonJ::class.java) != null) {
+                    val person = it.getValue(PersonJ::class.java)!!
+                    binding.toolbar.setTitle(person.login)
+                }
+            }
         FirebaseMessaging
             .getInstance()
             .token
