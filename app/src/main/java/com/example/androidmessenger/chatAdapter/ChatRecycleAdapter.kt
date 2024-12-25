@@ -7,15 +7,16 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidmessenger.R
+import com.google.firebase.auth.FirebaseAuth
 
 
 class ChatRecycleAdapter(
-    val messages: ArrayList<ElementChat>,
+    val messages: ArrayList<ChatMessage>,
 ) : RecyclerView.Adapter<ChatRecycleAdapter.ChatViewHolder>() {
     private var onClickListener: OnClickListener? = null
 
     interface OnClickListener {
-        fun onClick(messages: ArrayList<ElementChat>, position: Int)
+        fun onClick(messages: ArrayList<ChatMessage>, position: Int)
     }
 
     class ChatViewHolder(
@@ -41,14 +42,14 @@ class ChatRecycleAdapter(
         position: Int,
     ) {
         val message = messages[position]
-        if (message::class == GetMessage::class){
+        if (message.messageUser != FirebaseAuth.getInstance().uid) {
             holder.cardSendMessage.visibility = View.INVISIBLE
             holder.cardGetMessage.visibility = View.VISIBLE
-            holder.getMessage.text = message.textChat
-        }else{
+            holder.getMessage.text = message.messageText
+        } else {
             holder.cardGetMessage.visibility = View.INVISIBLE
             holder.cardSendMessage.visibility = View.VISIBLE
-            holder.sendMessage.text = message.textChat
+            holder.sendMessage.text = message.messageText
         }
         holder.itemView.setOnClickListener {
             if (onClickListener != null) {

@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidmessenger.R
 import com.example.androidmessenger.databinding.FragmentViewPagerChatsBinding
-import com.example.androidmessenger.saveLog.Person
+import com.example.androidmessenger.saveLog.PersonJ
 import com.example.androidmessenger.saveLog.RWDatadase
 import com.example.androidmessenger.service.PersonsAdapter
 import com.google.firebase.Firebase
@@ -21,9 +20,11 @@ import com.google.firebase.database.database
 class ViewPagerChatsFragment : Fragment() {
 
     private lateinit var adapter: PersonsAdapter
-    private var listLog = arrayListOf<Person>()
+    private var listLog = arrayListOf<PersonJ>()
     private var _binding: FragmentViewPagerChatsBinding? = null
     private val binding get() = _binding!!
+    private var personMain: PersonJ? = null
+    private val listPersonChats = arrayListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,20 +37,22 @@ class ViewPagerChatsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listLog.clear()
-        //listLog = readUsers()
+
+        readPersonFromFirebase()
 
         adapter = PersonsAdapter(listLog)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
-        RWDatadase.readUsers(listLog, adapter)
-//        readUsers()
 
         adapter.setOnPersonClickListener(object :
             PersonsAdapter.OnPersonsClickListener {
-            override fun onPersonClick(person: Person, position: Int) {
-                val bundle = Bundle()
-                bundle.putSerializable(Person.nameForBundle, person)
-                findNavController().navigate(R.id.action_menuFragment_to_chatFragment, bundle)
+            override fun onPersonClick(personReceiver: PersonJ, position: Int) {
+                if (personMain != null) {
+                    val bundle = Bundle()
+                    bundle.putSerializable("personReceiver", personReceiver)
+                    bundle.putSerializable("personMain", personMain!!)
+                    findNavController().navigate(R.id.action_menuFragment_to_chatFragment, bundle)
+                }
             }
         })
     }
@@ -59,15 +62,36 @@ class ViewPagerChatsFragment : Fragment() {
         _binding = null
     }
 
-//    @SuppressLint("NotifyDataSetChanged")
-//    private fun readUsers() {
-//        Firebase.database.reference.child("users")
-//            .get().addOnSuccessListener {
-//                for (element in it.children) {
-//                    val user = element.getValue(Person::class.java)!!
-//                    listLog.add(user)
-//                }
-//                adapter.notifyDataSetChanged()
-//            }
-//    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun readPersonFromFirebase() {
+        val id = FirebaseAuth.getInstance().uid!!
+        Firebase.database.reference
+            .child("messages")
+            .child(id)
+            .get().addOnSuccessListener {
+                for (element in it.children) {
+                    listPersonChats.add(element.key.toString())
+                }
+            }
+        Firebase.database.reference
+            .child("users")
+            .get().addOnSuccessListener {
+                for (element in it.children) {
+                    val person = element.getValue(PersonJ::class.java) as PersonJ
+                    if (listPersonChats.contains(person.uid)) {
+                        listLog.add(person)
+                    }
+                }
+                adapter.notifyDataSetChanged()
+            }
+        Firebase.database.reference
+            .child("users")
+            .child(id)
+            .get().addOnSuccessListener {
+                if (it.getValue(PersonJ::class.java) != null) {
+                    val person = it.getValue(PersonJ::class.java)!!
+                    personMain = person
+                }
+            }
+    }
 }

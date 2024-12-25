@@ -82,7 +82,7 @@
         tools:layout="@layout/fragment_profile" >
         <argument
             android:name="Person"
-            app:argType="com.example.androidmessenger.saveLog.Person" />
+            app:argType="com.example.androidmessenger.saveLog.PersonJ" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -93,8 +93,11 @@
             android:id="@+id/action_chatFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <argument
-            android:name="Person"
-            app:argType="com.example.androidmessenger.saveLog.Person" />
+            android:name="personMain"
+            app:argType="com.example.androidmessenger.saveLog.PersonJ" />
+        <argument
+            android:name="personReciever"
+            app:argType="com.example.androidmessenger.saveLog.PersonJ" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"

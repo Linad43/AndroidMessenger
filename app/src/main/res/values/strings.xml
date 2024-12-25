@@ -29,4 +29,7 @@
     <string name="edit_profile">Редактировать профиль</string>
     <string name="inputNumPhone">Введите номер телефона</string>
     <string name="exitFromAcc">Выход из аккаунта</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="fcm_message">FCM Message</string>
+
 </resources>

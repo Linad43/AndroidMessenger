@@ -10,12 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.androidmessenger.R
 import com.example.androidmessenger.databinding.FragmentRegisterBinding
-import com.example.androidmessenger.saveLog.Person
+import com.example.androidmessenger.saveLog.PersonJ
 import com.example.androidmessenger.saveLog.RWDatadase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.google.firebase.database.database
 
 class RegisterFragment : Fragment() {
 
@@ -103,9 +102,8 @@ class RegisterFragment : Fragment() {
                     "Успешно зарегистрирован",
                     Toast.LENGTH_SHORT
                 ).show()
-                val person = Person(
-                    login = email
-                )
+                val person = PersonJ()
+                person.login = email
                 RWDatadase.sendPersonToFirebase(person)
                 requireView()
                     .findNavController()

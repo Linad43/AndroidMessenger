@@ -25,7 +25,7 @@ class PasswordRecFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        binding.sendBTN.setOnClickListener{
+        binding.sendBTN.setOnClickListener {
             recoverPassword()
         }
     }
@@ -34,8 +34,9 @@ class PasswordRecFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
     private fun recoverPassword() {
-        if (binding.emailLogInET.text.isEmpty()){
+        if (binding.emailLogInET.text.isEmpty()) {
             Toast.makeText(
                 requireContext(),
                 "Поле не может быть пустым",
@@ -65,7 +66,8 @@ class PasswordRecFragment : Fragment() {
                 Toast.makeText(
                     requireContext(),
                     "${e.message}",
-                    Toast.LENGTH_SHORT)
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
     }

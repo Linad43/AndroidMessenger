@@ -16,15 +16,16 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.database
 import com.example.androidmessenger.R
+import com.example.androidmessenger.saveLog.PersonJ
 import com.example.androidmessenger.saveLog.RWDatadase
-import kotlinx.coroutines.joinAll
+import kotlin.concurrent.thread
 
 class EditProfileFragment : Fragment() {
 
     val GALLERY_REQUEST = 1
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
-    private var person: Person? = null
+    private var person: PersonJ? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +41,6 @@ class EditProfileFragment : Fragment() {
 
         var sharedPref = MyPreference(requireContext())
         readPersonFromFirebase()
-//        setPersonToFragment(person!!)
-
         binding.loginTV.text = sharedPref.getLogin()
 
         binding.cardImage.setOnClickListener {
@@ -54,7 +53,16 @@ class EditProfileFragment : Fragment() {
 
         binding.saveBTN.setOnClickListener {
             val person = createPersonFromFragment(sharedPref)
-            RWDatadase.sendPersonToFirebase(person)
+            if (this.person != null) {
+                this.person!!.firstName = person.firstName
+                this.person!!.secondName = person.secondName
+                this.person!!.role = person.role
+                this.person!!.address = person.address
+                this.person!!.age = person.age
+                RWDatadase.sendPersonToFirebase(this.person!!)
+            } else{
+                RWDatadase.sendPersonToFirebase(person)
+            }
         }
 
         binding.editNumPhone.setOnClickListener {
@@ -68,15 +76,7 @@ class EditProfileFragment : Fragment() {
             dialog.setPositiveButton("Обновить") { _, _ ->
 //                var person = readPersonFromFirebase()
                 if (person != null) {
-                    person = Person(
-                        login = person!!.login,
-                        firstName = person!!.firstName,
-                        secondName = person!!.secondName,
-                        role = person!!.role,
-                        age = person!!.age,
-                        address = person!!.address,
-                        numPhone = editNumPhone.text.toString()
-                    )
+                    person!!.numPhone = editNumPhone.text.toString()
                     RWDatadase.sendPersonToFirebase(person!!)
                 }
             }
@@ -86,7 +86,7 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun createPersonFromFragment(sharedPref: MyPreference): Person {
+    private fun createPersonFromFragment(sharedPref: MyPreference): PersonJ {
         val listET = arrayListOf(
             binding.firstNameET,
             binding.secondNameET,
@@ -112,36 +112,30 @@ class EditProfileFragment : Fragment() {
             }
             i++
         }
-        val person = Person(
-            login = sharedPref.getLogin().toString(),
-            firstName = firstName ?: "",
-            secondName = secondName ?: "",
-            role = role ?: "",
-            address = address ?: "",
-            age = age ?: "",
-        )
+        val person = PersonJ()
+        person.login = sharedPref.getLogin().toString()
+        person.firstName = firstName ?: ""
+        person.secondName = secondName ?: ""
+        person.role = role ?: ""
+        person.address = address ?: ""
+        person.age = age ?: ""
         return person
     }
-//
-//    private fun sendPersonToFirebase(person: Person) {
-//        val database = Firebase.database.reference
-//            .child("users")
-//        val map: HashMap<String, Person> = HashMap()
-//        map[person.login] = person
-//        database.updateChildren(map as Map<String, Any>)
-//    }
 
     private fun readPersonFromFirebase() {
-        Firebase.database.reference.child("users")
+        val id = FirebaseAuth.getInstance().uid!!
+        Firebase.database.reference
+            .child("users")
+            .child(id)
             .get().addOnSuccessListener {
-                if (it.child("Person").getValue(Person::class.java) != null) {
-                    person = it.child("Person").getValue(Person::class.java)!!
+                if (it.getValue(PersonJ::class.java) != null) {
+                    person = it.getValue(PersonJ::class.java)!!
                     setPersonToFragment(person!!)
                 }
             }
     }
 
-    private fun setPersonToFragment(person: Person) {
+    private fun setPersonToFragment(person: PersonJ) {
         binding.firstNameET.setText(person.firstName)
         binding.secondNameET.setText(person.secondName)
         binding.roleET.setText(person.role)
@@ -159,7 +153,6 @@ class EditProfileFragment : Fragment() {
         imagePickerIntent.type = "image/*"
         startActivityForResult(imagePickerIntent, GALLERY_REQUEST)
     }
-
 }
 
 

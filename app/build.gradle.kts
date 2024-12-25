@@ -74,6 +74,7 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-inappmessaging-display")
     implementation("com.google.firebase:firebase-analytics")
+    implementation("androidx.work:work-runtime:2.10.0")
 
 //    implementation ("com.google.firebase:firebase-admin:9.4.2")
 

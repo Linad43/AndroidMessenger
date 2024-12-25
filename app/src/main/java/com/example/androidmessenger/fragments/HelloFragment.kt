@@ -1,7 +1,6 @@
 package com.example.androidmessenger.fragments
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,9 +29,10 @@ class HelloFragment : Fragment() {
 //            }else{
 //                findNavController().navigate(R.id.action_helloFragment_to_logInFragment)}
 //        }, 3710)
-        if (sharedPref.getLogin() != null && sharedPref.getPassword() != null){
+        if (sharedPref.getLogin() != null && sharedPref.getPassword() != null) {
             findNavController().navigate(R.id.action_helloFragment_to_menuFragment)
-        }else{
-            findNavController().navigate(R.id.action_helloFragment_to_logInFragment)}
+        } else {
+            findNavController().navigate(R.id.action_helloFragment_to_logInFragment)
+        }
     }
 }

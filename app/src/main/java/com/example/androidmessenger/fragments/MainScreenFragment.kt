@@ -2,7 +2,6 @@ package com.example.androidmessenger.fragments
 
 import android.Manifest
 import android.content.ContentValues.TAG
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.androidmessenger.R
@@ -60,15 +58,15 @@ class MainScreenFragment : Fragment() {
             .addOnCompleteListener(
                 OnCompleteListener
                 { task ->
-                    if(!task.isSuccessful){
+                    if (!task.isSuccessful) {
                         Log.w(TAG, "Fetching FCM registration token failed", task.exception)
                         return@OnCompleteListener
                     }
-                    Toast.makeText(
-                        requireContext(),
-                        "Complete token",
-                        Toast.LENGTH_SHORT
-                    ).show()
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "Complete token",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
                 })
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {

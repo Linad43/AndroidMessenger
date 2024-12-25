@@ -13,7 +13,8 @@ class Person(
     val address: String = "",
     val age: String = "",
     val numPhone: String = "",
-): Serializable {
+    val arrayMessages: MutableMap<String, ArrayList<Pair<KeyMessage, String>>> = mutableMapOf(),
+) : Serializable {
     companion object {
         const val nameForBundle = "Person"
         //        fun randLogin(): String {

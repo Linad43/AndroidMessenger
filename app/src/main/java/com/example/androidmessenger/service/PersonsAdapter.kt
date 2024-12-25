@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidmessenger.R
 import com.example.androidmessenger.saveLog.Person
+import com.example.androidmessenger.saveLog.PersonJ
 
 class PersonsAdapter(
-    private val persons: ArrayList<Person>,
+    private val persons: ArrayList<PersonJ>,
 ) : RecyclerView.Adapter<PersonsAdapter.PersonsViewHolder>() {
     private var onPersonsClickListener: OnPersonsClickListener? = null
     override fun onCreateViewHolder(
@@ -39,7 +40,7 @@ class PersonsAdapter(
     override fun getItemCount(): Int = persons.size
 
     interface OnPersonsClickListener {
-        fun onPersonClick(persons: Person, position: Int)
+        fun onPersonClick(persons: PersonJ, position: Int)
     }
 
     class PersonsViewHolder(
