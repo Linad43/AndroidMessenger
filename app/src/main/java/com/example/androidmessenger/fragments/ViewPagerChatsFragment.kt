@@ -69,7 +69,7 @@ class ViewPagerChatsFragment : Fragment() {
                 }
                 listLog.clear()
                 listLog.addAll(newList.filter {
-                    it.login.contains(textSearch)
+                    it.login.contains(textSearch, ignoreCase = true)
                 })
                 adapter.notifyDataSetChanged()
             } else {
