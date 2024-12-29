@@ -50,8 +50,13 @@ class ChatFragment : Fragment() {
             adapter,
             listChat
         )
+        val myLinearLayout = LinearLayoutManager(requireContext())
+        myLinearLayout.orientation = LinearLayoutManager.VERTICAL
+        myLinearLayout.stackFromEnd = true
+        myLinearLayout.reverseLayout = false
+        binding.recyclerView.layoutManager = myLinearLayout//LinearLayoutManager(requireContext())
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.smoothScrollToPosition(adapter.itemCount)
         binding.recyclerView.adapter = adapter
 
         binding.titleLoginTV.text = personReceiver.login
@@ -64,7 +69,10 @@ class ChatFragment : Fragment() {
             findNavController().navigate(R.id.action_chatFragment_to_profileFragment, bundle)
         }
         binding.imageSend.setOnClickListener {
-            sendMessage()
+            if (binding.sendMessageET.text.isNotEmpty()) {
+                sendMessage()
+                binding.recyclerView.smoothScrollToPosition(adapter.itemCount)
+            }
         }
         adapter.setOnClickListener(object :
             ChatRecycleAdapter.OnClickListener {
